@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Youtube-dl-Gui", "Youtube-dl-Gui\Youtube-dl-Gui.csproj", "{C8579BC5-8890-4071-B3BA-E3D103F82110}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{19C14CBE-5E02-4C6F-ACBF-9B2D6B7F7379}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C8579BC5-8890-4071-B3BA-E3D103F82110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8579BC5-8890-4071-B3BA-E3D103F82110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8579BC5-8890-4071-B3BA-E3D103F82110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8579BC5-8890-4071-B3BA-E3D103F82110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C14CBE-5E02-4C6F-ACBF-9B2D6B7F7379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C14CBE-5E02-4C6F-ACBF-9B2D6B7F7379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C14CBE-5E02-4C6F-ACBF-9B2D6B7F7379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C14CBE-5E02-4C6F-ACBF-9B2D6B7F7379}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {959602C9-C31F-4469-8E8B-F58DC27834B5}
+	EndGlobalSection
+EndGlobal

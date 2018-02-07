@@ -1,0 +1,30 @@
+список форматов
+youtube-dl [Link] -f
+скачать видео
+youtube-dl [Link]
+скачать видео в лучшем качестве
+youtube-dl -f bestvideo [Link]
+youtube-dl bestvideo -o "%(title)s.%(ext)s" [Link]
+скачать аудио в лучшем качестве
+youtube-dl -f bestaudio [Link]
+
+
+
+
+
+
+
+
+
+
+
+
+конвертировать аудио
+ffmpeg -i "source_audio.avi" -vn -ar 44100 -ac 2 -ab 192 -f mp3 son_final.mp3
+
+
+ffmpeg -i source_audio.avi input -acodec aac -ab 128kb final_audio.mp4
+Добавить аудио
+ffmpeg -i son.wav -i video_origine.avi video_finale.mpg
+
+
