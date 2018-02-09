@@ -21,7 +21,7 @@ namespace Youtube_dl_Gui
             SettingsManager settingsManager = new SettingsManager();
             MainForm mainForm = new MainForm();
 
-            Presenter presenter = new Presenter(mainForm, downloadManager);
+            MainPresenter presenter = new MainPresenter(mainForm, downloadManager);
 
             Application.Run(mainForm);
         }

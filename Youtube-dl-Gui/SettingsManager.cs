@@ -9,17 +9,21 @@ using System.Text.RegularExpressions;
 
 namespace Youtube_dl_Gui
 {
-    public interface I
+    public interface ISettingsManager
+    {
+        void DownLoad(string pathFileSettings);
+        void Save();
 
 
+    }
 
-    class SettingsManager
+    class SettingsManager: ISettingsManager
     {
         string pathFileSettings = "Settings";
 
         string pathYoutubeDL = "";
 
-        void DownLoad(string pathFileSettings)
+        public void DownLoad(string pathFileSettings)
         {
             using (StreamReader sr = new StreamReader(pathFileSettings))
             {
@@ -31,7 +35,7 @@ namespace Youtube_dl_Gui
             }
         }
 
-        void Save()
+        public void Save()
         {
             using (StreamWriter tr = new StreamWriter(new FileStream(pathFileSettings, FileMode.Create)))
             {
@@ -40,7 +44,7 @@ namespace Youtube_dl_Gui
             }
         }
 
-        Setting GetSetting(string settingLine)
+        private Setting GetSetting(string settingLine)
         {
             Setting setting = new Setting();
            
@@ -50,7 +54,7 @@ namespace Youtube_dl_Gui
             return setting;
         }
 
-        void SetSetting(Setting setting)
+        private void SetSetting(Setting setting)
         {
             switch (setting.Name)
             {

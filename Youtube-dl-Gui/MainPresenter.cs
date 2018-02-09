@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Youtube_dl_Gui
 {
-    class Presenter
+    class MainPresenter
     {
         private IMainForm _mainForm;
         private IDownloadManager _downloadManager;
 
-        public Presenter(IMainForm mainForm, IDownloadManager downloadManager)
+        public MainPresenter(IMainForm mainForm, IDownloadManager downloadManager)
         {
             _mainForm = mainForm;
             _downloadManager = downloadManager;

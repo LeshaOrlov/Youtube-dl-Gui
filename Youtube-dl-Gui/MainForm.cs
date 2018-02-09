@@ -26,6 +26,7 @@ namespace Youtube_dl_Gui
         event EventHandler DownloadClick;
         event EventHandler UpdateClick;
         event EventHandler VersionClick;
+        //event EventHandler SettingsClick;
     }
 
     public partial class MainForm : Form, IMainForm
@@ -56,6 +57,7 @@ namespace Youtube_dl_Gui
                 VersionClick(this, e);
         }
 
+       
 
         #endregion
 
@@ -103,7 +105,18 @@ namespace Youtube_dl_Gui
         public  event EventHandler DownloadClick;
 
         public event EventHandler VersionClick;
+
+        //public event EventHandler SettingsClick;
         #endregion
+
+        private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //if (SettingsClick != null)
+            //    SettingsClick(this, e);
+            FormSettings formSettings = new FormSettings();
+            formSettings.Show();
+
+        }
 
         public void DisplayProgress(int _value)
         {
@@ -114,6 +127,12 @@ namespace Youtube_dl_Gui
             this.InvokeEx(action);
         }
 
-
+        private void btnOpenDir_Click(object sender, EventArgs e)
+        {
+            if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fldDownDir.Text = folderBrowserDialog1.SelectedPath;
+            }
+        }
     }
 }
