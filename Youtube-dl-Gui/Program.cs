@@ -17,13 +17,14 @@ namespace Youtube_dl_Gui
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DownloadManager downloadManager = new DownloadManager();
-            SettingsManager settingsManager = new SettingsManager();
-            MainForm mainForm = new MainForm();
+            MainPresenter presenter = new MainPresenter(new MainForm(), new DownloadManager());
+            presenter.Run();
 
-            MainPresenter presenter = new MainPresenter(mainForm, downloadManager);
 
-            Application.Run(mainForm);
+
+
+
+            
         }
     }
 }

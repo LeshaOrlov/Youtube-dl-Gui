@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Youtube_dl_Gui
 {
-    public interface IFormSettings
+    public interface IFormSettings : IView
     {
         string PathYoutubeDL { get; set; }
         event EventHandler ResetSettings;
@@ -18,11 +18,12 @@ namespace Youtube_dl_Gui
         event EventHandler LoadSettings;
     }
 
-    public partial class FormSettings : Form
+    public partial class FormSettings : Form, IFormSettings
     {
         public FormSettings()
         {
             InitializeComponent();
+
         }
 
         #region проброс событий
@@ -52,6 +53,11 @@ namespace Youtube_dl_Gui
         public event EventHandler ResetSettings;
         public event EventHandler SaveSettings;
         public event EventHandler LoadSettings;
+
+        private new void Show()
+        {
+
+        }
 
         public string PathYoutubeDL
         {

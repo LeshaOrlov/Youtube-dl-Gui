@@ -13,7 +13,7 @@ namespace Youtube_dl_Gui
     {
         void DownLoad(string pathFileSettings);
         void Save();
-
+        string PathYoutubeDL { get; set; }
 
     }
 
@@ -22,6 +22,8 @@ namespace Youtube_dl_Gui
         string pathFileSettings = "Settings";
 
         string pathYoutubeDL = "";
+
+        public string PathYoutubeDL { get => pathYoutubeDL; set => pathYoutubeDL = value; }
 
         public void DownLoad(string pathFileSettings)
         {
@@ -39,7 +41,7 @@ namespace Youtube_dl_Gui
         {
             using (StreamWriter tr = new StreamWriter(new FileStream(pathFileSettings, FileMode.Create)))
             {
-                tr.WriteLine("pathYoutubeDL = " + pathYoutubeDL);
+                tr.WriteLine("pathYoutubeDL = " + PathYoutubeDL);
                 
             }
         }
@@ -60,7 +62,7 @@ namespace Youtube_dl_Gui
             {
                 case "pathYoutubeDL":
                     {
-                        pathYoutubeDL = setting.Value;
+                        PathYoutubeDL = setting.Value;
                         break;
                     }
                 default:

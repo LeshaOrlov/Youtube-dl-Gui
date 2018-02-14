@@ -15,7 +15,8 @@ using System.Text.RegularExpressions;
 
 namespace Youtube_dl_Gui
 {
-    public interface IMainForm
+    
+    public interface IMainForm : IView
     {
         string DirPath { get; }
         string urlPath { get; }
@@ -31,10 +32,11 @@ namespace Youtube_dl_Gui
 
     public partial class MainForm : Form, IMainForm
     {
-       
+        
         public MainForm()
         {
             InitializeComponent();
+            
             btnRun.Click += BtnRun_Click; 
         }
 
@@ -106,16 +108,20 @@ namespace Youtube_dl_Gui
 
         public event EventHandler VersionClick;
 
+
+        public new void Show()
+        {
+            Application.Run(this);
+        }
+
         //public event EventHandler SettingsClick;
         #endregion
 
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (SettingsClick != null)
-            //    SettingsClick(this, e);
             FormSettings formSettings = new FormSettings();
+            SettingsPresenter settingsPresenter = new SettingsPresenter(formSettings);
             formSettings.Show();
-
         }
 
         public void DisplayProgress(int _value)

@@ -91,5 +91,10 @@ namespace Youtube_dl_Gui
             task.Start();
 
         }
+
+        public void Run()
+        {
+            _mainForm.Show();
+        }
     }
 }
