@@ -10,6 +10,7 @@ namespace Youtube_dl_Gui
 {
     class MainPresenter
     {
+        List<string> listURL = null;
         private IMainForm _mainForm;
         private IDownloadManager _downloadManager;
 
@@ -29,19 +30,36 @@ namespace Youtube_dl_Gui
             string options = "";
             string pathSave = _mainForm.DirPath;
 
-            if (_mainForm.Video)
-            {
-                options = "-o " + pathSave + "%(title)s.%(ext)s " + "-f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4 ";
+            string output = "-o " + pathSave + "/" + "%(title)s.%(ext)s ";
 
-            }
-            else
-                if (_mainForm.Audio)
+            switch (_mainForm.Format)
             {
-                string output = "-o " + pathSave + "%(title)s.%(ext)s ";
-
-                string format_audio = "[ext=m4a]";
-                string format = "-f bestaudio" + format_audio + " ";
-                options = output + format;
+                case "4K":
+                    {
+                        options = output + "-f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4 ";
+                        break;
+                    }
+                case "Full HD 1080p":
+                    {
+                        options = output + "-f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4 ";
+                        break;
+                    }
+                case "m4a":
+                    {
+                        string format_audio = "[ext=m4a]";
+                        string format = "-f bestaudio" + format_audio + " ";
+                        options = output + format;
+                        break;
+                    }
+                //case "mp3":
+                //    {
+                //        string format_audio = "[ext=mp3]";
+                //        string format = "-f bestaudio" + format_audio + " ";
+                //        options = output + format;
+                //        break;
+                //    }
+                default:
+                    return;
             }
 
             commands = options + link;
@@ -50,7 +68,7 @@ namespace Youtube_dl_Gui
             Thread task = new Thread(() => _downloadManager.ReadStream(commands));
             task.IsBackground = false;
             task.Start();
- 
+
         }
 
 
@@ -72,7 +90,7 @@ namespace Youtube_dl_Gui
 
         public void Update(object sender, EventArgs e)
         {
-            
+
             string commands = "--update";
 
             Thread task = new Thread(() => _downloadManager.ReadStream(commands));

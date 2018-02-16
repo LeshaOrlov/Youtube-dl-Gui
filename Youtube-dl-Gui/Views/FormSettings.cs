@@ -23,7 +23,6 @@ namespace Youtube_dl_Gui
         public FormSettings()
         {
             InitializeComponent();
-
         }
 
         #region проброс событий
@@ -32,8 +31,6 @@ namespace Youtube_dl_Gui
             if (ResetSettings != null)
                 ResetSettings(this, e);
         }
-
-       
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {

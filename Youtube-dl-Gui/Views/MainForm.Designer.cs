@@ -30,9 +30,6 @@
         {
             this.btnRun = new System.Windows.Forms.Button();
             this.fldURL = new System.Windows.Forms.TextBox();
-            this.checkAudio = new System.Windows.Forms.CheckBox();
-            this.checkVideo = new System.Windows.Forms.CheckBox();
-            this.fldDownDir = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -48,15 +45,17 @@
             this.обновитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.версияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.fldFormat = new System.Windows.Forms.ComboBox();
+            this.fldDownDir = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRun
             // 
             this.btnRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRun.Location = new System.Drawing.Point(394, 121);
+            this.btnRun.Location = new System.Drawing.Point(518, 230);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(92, 50);
+            this.btnRun.Size = new System.Drawing.Size(81, 48);
             this.btnRun.TabIndex = 0;
             this.btnRun.Text = "Download";
             this.btnRun.UseVisualStyleBackColor = true;
@@ -66,39 +65,10 @@
             this.fldURL.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.fldURL.Location = new System.Drawing.Point(85, 33);
+            this.fldURL.Multiline = true;
             this.fldURL.Name = "fldURL";
-            this.fldURL.Size = new System.Drawing.Size(401, 20);
+            this.fldURL.Size = new System.Drawing.Size(423, 134);
             this.fldURL.TabIndex = 1;
-            // 
-            // checkAudio
-            // 
-            this.checkAudio.AutoSize = true;
-            this.checkAudio.Location = new System.Drawing.Point(15, 116);
-            this.checkAudio.Name = "checkAudio";
-            this.checkAudio.Size = new System.Drawing.Size(53, 17);
-            this.checkAudio.TabIndex = 2;
-            this.checkAudio.Text = "Audio";
-            this.checkAudio.UseVisualStyleBackColor = true;
-            // 
-            // checkVideo
-            // 
-            this.checkVideo.AutoSize = true;
-            this.checkVideo.Location = new System.Drawing.Point(15, 139);
-            this.checkVideo.Name = "checkVideo";
-            this.checkVideo.Size = new System.Drawing.Size(53, 17);
-            this.checkVideo.TabIndex = 3;
-            this.checkVideo.Text = "Video";
-            this.checkVideo.UseVisualStyleBackColor = true;
-            // 
-            // fldDownDir
-            // 
-            this.fldDownDir.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fldDownDir.Location = new System.Drawing.Point(85, 59);
-            this.fldDownDir.Name = "fldDownDir";
-            this.fldDownDir.Size = new System.Drawing.Size(310, 20);
-            this.fldDownDir.TabIndex = 4;
-            this.fldDownDir.Text = "C:\\Users\\Alex\\Downloads\\";
             // 
             // label1
             // 
@@ -112,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 62);
+            this.label2.Location = new System.Drawing.Point(3, 179);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
             this.label2.TabIndex = 6;
@@ -120,14 +90,14 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(85, 86);
+            this.progressBar1.Location = new System.Drawing.Point(85, 250);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(401, 23);
             this.progressBar1.TabIndex = 8;
             // 
             // btnOpenDir
             // 
-            this.btnOpenDir.Location = new System.Drawing.Point(411, 59);
+            this.btnOpenDir.Location = new System.Drawing.Point(518, 174);
             this.btnOpenDir.Name = "btnOpenDir";
             this.btnOpenDir.Size = new System.Drawing.Size(75, 23);
             this.btnOpenDir.TabIndex = 9;
@@ -143,7 +113,7 @@
             this.программаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(498, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(611, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -185,7 +155,7 @@
             // изменитьToolStripMenuItem
             // 
             this.изменитьToolStripMenuItem.Name = "изменитьToolStripMenuItem";
-            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.изменитьToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.изменитьToolStripMenuItem.Text = "Изменить";
             this.изменитьToolStripMenuItem.Click += new System.EventHandler(this.изменитьToolStripMenuItem_Click);
             // 
@@ -212,24 +182,53 @@
             this.версияToolStripMenuItem.Text = "Версия";
             this.версияToolStripMenuItem.Click += new System.EventHandler(this.версияToolStripMenuItem_Click);
             // 
+            // fldFormat
+            // 
+            this.fldFormat.FormattingEnabled = true;
+            this.fldFormat.Items.AddRange(new object[] {
+            "Full HD 1080p",
+            "HD 720p",
+            "4K",
+            "m4a",
+            "MP3",
+            "WebM"});
+            this.fldFormat.Location = new System.Drawing.Point(85, 213);
+            this.fldFormat.Name = "fldFormat";
+            this.fldFormat.Size = new System.Drawing.Size(121, 21);
+            this.fldFormat.TabIndex = 12;
+            this.fldFormat.Text = "Full HD 1080p";
+            // 
+            // fldDownDir
+            // 
+            this.fldDownDir.FormattingEnabled = true;
+            this.fldDownDir.Items.AddRange(new object[] {
+            "C:\\Users\\Alex\\Downloads",
+            "C:\\Users\\Alex\\Desktop",
+            "C:\\Users\\Alex\\Music",
+            "C:\\Users\\Alex\\Videos"});
+            this.fldDownDir.Location = new System.Drawing.Point(85, 176);
+            this.fldDownDir.Name = "fldDownDir";
+            this.fldDownDir.Size = new System.Drawing.Size(423, 21);
+            this.fldDownDir.TabIndex = 13;
+            this.fldDownDir.Text = "C:\\Users\\Alex\\Downloads";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 180);
+            this.ClientSize = new System.Drawing.Size(611, 290);
+            this.Controls.Add(this.fldDownDir);
+            this.Controls.Add(this.fldFormat);
             this.Controls.Add(this.btnOpenDir);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.fldDownDir);
-            this.Controls.Add(this.checkVideo);
-            this.Controls.Add(this.checkAudio);
             this.Controls.Add(this.fldURL);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.Text = "Youtube-dl-GUI";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -241,9 +240,6 @@
 
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.TextBox fldURL;
-        private System.Windows.Forms.CheckBox checkAudio;
-        private System.Windows.Forms.CheckBox checkVideo;
-        private System.Windows.Forms.TextBox fldDownDir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ProgressBar progressBar1;
@@ -259,6 +255,8 @@
         private System.Windows.Forms.ToolStripMenuItem обновитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem версияToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.ComboBox fldFormat;
+        private System.Windows.Forms.ComboBox fldDownDir;
     }
 }
 

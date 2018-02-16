@@ -50,17 +50,17 @@
   <ItemGroup>
     <Compile Include="ControlHelper.cs" />
     <Compile Include="DownloadManager.cs" />
-    <Compile Include="FormSettings.cs">
+    <Compile Include="Views\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSettings.Designer.cs">
+    <Compile Include="Views\FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\IView.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainPresenter.cs" />
@@ -69,10 +69,10 @@
     <Compile Include="Setting.cs" />
     <Compile Include="SettingsManager.cs" />
     <Compile Include="SettingsPresenter.cs" />
-    <EmbeddedResource Include="FormSettings.resx">
+    <EmbeddedResource Include="Views\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

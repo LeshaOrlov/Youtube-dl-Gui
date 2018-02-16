@@ -13,6 +13,7 @@ using System.IO;
 using System.Threading;
 using System.Text.RegularExpressions;
 
+
 namespace Youtube_dl_Gui
 {
     
@@ -20,9 +21,8 @@ namespace Youtube_dl_Gui
     {
         string DirPath { get; }
         string urlPath { get; }
+        string Format { get; }
         int Progress { get; set; }
-        bool Audio { get; }
-        bool Video { get; }
         void DisplayProgress(int value);
         event EventHandler DownloadClick;
         event EventHandler UpdateClick;
@@ -69,21 +69,14 @@ namespace Youtube_dl_Gui
             get {return fldDownDir.Text; }
         }
 
-        public bool Audio
+        public string Format
         {
-            get
-            {
-                return checkAudio.Checked;
-            }
+            get { return fldFormat.Text; }
         }
 
-        public bool Video
-        {
-            get
-            {
-                return checkVideo.Checked;
-            }
-        }
+       
+
+       
 
         public int Progress
         {
@@ -100,6 +93,7 @@ namespace Youtube_dl_Gui
         public string urlPath
         {
             get { return fldURL.Text; }
+           
         }
 
         public event EventHandler UpdateClick;
