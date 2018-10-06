@@ -9,13 +9,12 @@ namespace Youtube_dl_Gui
    
     class SettingsPresenter
     {
-        private SettingsManager _settingsManager;
+        
         private IFormSettings _formSettings;
 
         public SettingsPresenter(IFormSettings formSettings)
         {
 
-            _settingsManager = new SettingsManager();
             _formSettings = formSettings;
             _formSettings.LoadSettings += new EventHandler(LoadSettings);
             _formSettings.ResetSettings += new EventHandler(ResetSettings);
@@ -24,7 +23,8 @@ namespace Youtube_dl_Gui
 
         public void SaveSettings(object sender, EventArgs e)
         {
-            
+            Properties.Settings.Default.Country = _formSettings.Language;
+            Properties.Settings.Default.Save();
         }
 
         public void ResetSettings(object sender, EventArgs e)
@@ -34,7 +34,12 @@ namespace Youtube_dl_Gui
 
         public void LoadSettings(object sender, EventArgs e)
         {
-            _formSettings.PathYoutubeDL = _settingsManager.PathYoutubeDL;
+            _formSettings.PathYoutubeDL = Properties.Settings.Default.YoutubeDLPath;
+
+            if (!String.IsNullOrEmpty(Properties.Settings.Default.Country))
+            {
+                _formSettings.Language = Properties.Settings.Default.Country;
+            }
         }
     }
 }

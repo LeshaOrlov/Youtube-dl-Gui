@@ -20,11 +20,6 @@ namespace Youtube_dl_Gui
             MainPresenter presenter = new MainPresenter(new MainForm(), new DownloadManager());
             presenter.Run();
 
-
-
-
-
-            
         }
     }
 }

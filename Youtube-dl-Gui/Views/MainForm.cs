@@ -12,7 +12,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Text.RegularExpressions;
-
+using System.Globalization;
 
 namespace Youtube_dl_Gui
 {
@@ -20,10 +20,12 @@ namespace Youtube_dl_Gui
     public interface IMainForm : IView
     {
         string DirPath { get; }
-        string urlPath { get; }
+        List<string> urlPaths { get; }
         string Format { get; }
+        
         int Progress { get; set; }
-        void DisplayProgress(int value);
+        bool Playlist { get; }
+        void DisplayProgress(string line);
         event EventHandler DownloadClick;
         event EventHandler UpdateClick;
         event EventHandler VersionClick;
@@ -35,9 +37,16 @@ namespace Youtube_dl_Gui
         
         public MainForm()
         {
+            if (!String.IsNullOrEmpty(Properties.Settings.Default.Country))
+            {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.Country);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(Properties.Settings.Default.Country);
+            }
+
             InitializeComponent();
             
             btnRun.Click += BtnRun_Click; 
+
         }
 
         #region Проброс событий
@@ -74,9 +83,12 @@ namespace Youtube_dl_Gui
             get { return fldFormat.Text; }
         }
 
-       
 
-       
+        public bool Playlist
+        {
+            get { return checkPlaylist.Checked; }
+        }
+
 
         public int Progress
         {
@@ -90,10 +102,14 @@ namespace Youtube_dl_Gui
             }
         }
 
-        public string urlPath
+        public List<string> urlPaths
         {
-            get { return fldURL.Text; }
-           
+            get {
+                List<string> links = new List<string>(
+                           fldURL.Text.Split(new string[] { "\r\n" },
+                           StringSplitOptions.RemoveEmptyEntries));
+                return links;
+            }
         }
 
         public event EventHandler UpdateClick;
@@ -114,25 +130,67 @@ namespace Youtube_dl_Gui
         private void изменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormSettings formSettings = new FormSettings();
+            //formSettings.ChangeLanguage += СhooseLanguage;
             SettingsPresenter settingsPresenter = new SettingsPresenter(formSettings);
+
             formSettings.Show();
         }
 
-        public void DisplayProgress(int _value)
+        public void DisplayProgress(string _line)
         {
             Action action = () =>
             {
-                progressBar1.Value = _value;
+                //
+                int value = 0;
+                string pattern = @"[0-9]+(?=\.[0-9]*%)";
+                Regex regex = new Regex(pattern);
+                MatchCollection matches = regex.Matches(_line);
+                if (matches.Count > 0)
+                {
+                    Match match = matches[0];
+                    value = Int32.Parse(match.Value);
+                    ProgessLabel.Text = _line;
+                }
+                progressBar1.Value = value;
+            //
+            if (_line.IndexOf(@"[download] Destination:")>-1)
+            {
+                    int startIndex = _line.LastIndexOf(@"\");
+                    if (startIndex > -1)
+                    { DownloadingLabel.Text = _line.Substring(startIndex+1); }
+                    
+            }
+
+            //
+            ConsoleText.Text += _line + Environment.NewLine;
+
             };
             this.InvokeEx(action);
         }
+       
 
-        private void btnOpenDir_Click(object sender, EventArgs e)
+    private void btnOpenDir_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 fldDownDir.Text = folderBrowserDialog1.SelectedPath;
             }
         }
+
+       
+
+
+
+        //private void СhooseLanguage(string lang)
+        //{
+        //    Form form = this;
+        //    foreach (Control c in form.Controls)
+        //    {
+
+        //        ComponentResourceManager resources = new ComponentResourceManager(typeof(FormSettings));
+        //        resources.ApplyResources(c, c.Name, new CultureInfo(lang));
+        //    }
+
+        //}
     }
 }
