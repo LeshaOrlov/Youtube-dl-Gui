@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Command.cs" />
     <Compile Include="ControlHelper.cs" />
     <Compile Include="DownloadManager.cs" />
     <Compile Include="Views\FormSettings.cs">
